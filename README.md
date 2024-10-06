@@ -1,10 +1,8 @@
 # 🎶 Spotify for README
 
-<a href="https://spotify-for-readme-psi.vercel.app/">
+<a href="https://spotify-for-readme-psi.vercel.app/">Presiona en el logo para acceder
     <img src="./images/spotifylogo.gif" width="50%" alt="Logo de Spotify"/>
 </a>
-## Presiona en el logo para acceder
-  
 ## Descripción
 ¡Bienvenido a **Spotify for README**! Este proyecto te permite mostrar lo que estás escuchando actualmente en Spotify directamente en tu README. Con un diseño moderno y atractivo, puedes compartir tu música favorita con tus amigos y la comunidad.
 
