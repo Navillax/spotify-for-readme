@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spotify Playing</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #121212;
+        color: #ffffff;
+        text-align: center;
+        padding: 20px;
+      }
+      #current-track {
+        border: 2px solid #1db954;
+        border-radius: 10px;
+        padding: 20px;
+        background-color: #282828;
+        display: inline-block;
+        margin: 20px auto;
+        width: 300px;
+      }
+      img {
+        border-radius: 10px;
+        width: 100%;
+      }
+      a {
+        color: #1db954;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Lo que estoy escuchando en Spotify 🎧</h1>
+    <div id="current-track"></div>
+    <script>
+      async function fetchCurrentTrack() {
+        const response = await fetch("/api/spotify"); // Llamada a la API
+        const data = await response.json();
+
+        if (data && data.is_playing) {
+          const trackImage = data.item.album.images[0].url;
+          document.getElementById("current-track").innerHTML = `
+            <img src="${trackImage}" alt="Portada del álbum">
+            <p>Escuchando: ${data.item.name} - ${data.item.artists
+            .map((artist) => artist.name)
+            .join(", ")}</p>
+            <a href="${data.item.external_urls.spotify}">Escuchar en Spotify</a>
+          `;
+        } else {
+          document.getElementById("current-track").innerHTML =
+            "<p>No estás escuchando nada.</p>";
+        }
+      }
+
+      setInterval(fetchCurrentTrack, 10000); // Actualiza cada 10 segundos
+      fetchCurrentTrack(); // Llama la función al cargar
+    </script>
+  </body>
+</html>
