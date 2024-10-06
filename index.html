@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Spotify Playing</title>
+    <title>Spotify NaviX</title>
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -29,14 +29,19 @@
         color: #1db954;
         text-decoration: none;
       }
+      .gif {
+        display: block;
+        margin: 10px auto;
+        max-width: 100%;
+      }
     </style>
   </head>
   <body>
-    <h1>Lo que estoy escuchando en Spotify 🎧</h1>
+    <h1>🎧 Lo que estoy escuchando en Spotify 🎧</h1>
     <div id="current-track"></div>
     <script>
       async function fetchCurrentTrack() {
-        const response = await fetch("/api/spotify"); // Llamada a la API
+        const response = await fetch("/api/spotify");
         const data = await response.json();
 
         if (data && data.is_playing) {
@@ -51,15 +56,13 @@
         } else {
           document.getElementById("current-track").innerHTML = `
             <p>Navix no está escuchando música.</p>
-            <div style="width:100%;height:0;padding-bottom:67%;position:relative;">
-              <iframe src="https://giphy.com/embed/tXL4FHPSnVJ0A" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
-            </div>
+            <img src="images/bored.gif" alt="Bored GIF" class="gif">
           `;
         }
       }
 
-      setInterval(fetchCurrentTrack, 10000); // Actualiza cada 10 segundos
-      fetchCurrentTrack(); // Llama la función al cargar
+      setInterval(fetchCurrentTrack, 10000);
+      fetchCurrentTrack();
     </script>
   </body>
 </html>
